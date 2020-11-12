@@ -1,9 +1,9 @@
 package com.sinosure.mall.sys.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import com.sinosure.mall.sys.service.IPmsBrandService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -16,6 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sys/pms-brand")
 public class PmsBrandController {
+
+    @Autowired
+    IPmsBrandService pmsBrandService;
+    @GetMapping("/findall")
+    @ResponseBody
+    public String findAllBrands(){
+        return this.pmsBrandService.list().stream().toString();
+    }
 
 }
 
